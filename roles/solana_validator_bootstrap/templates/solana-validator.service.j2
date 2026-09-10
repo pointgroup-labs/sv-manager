@@ -10,10 +10,12 @@ RestartSec=1
 User={{ solana_user }}
 LimitMEMLOCK=2000000000
 LimitNOFILE=1000000
+CapabilityBoundingSet=CAP_NET_RAW CAP_NET_ADMIN CAP_BPF CAP_PERFMON
+AmbientCapabilities=CAP_NET_RAW CAP_NET_ADMIN CAP_BPF CAP_PERFMON
 Environment="PATH=/bin:/usr/bin:{{ env_path }}"
 Environment="SOLANA_METRICS_CONFIG=host={{ solana_metrics_url }}"
 ExecStart={{ env_path }}/agave-validator \
---identity {{ secrets_path }}/validator-keypair.json \
+--identity {{ secrets_path }}/empty-validator-keypair.json \
 {% if not rpc_node %}
 --vote-account {{ secrets_path }}/vote-account-keypair.json \
 {% endif %}
@@ -54,16 +56,16 @@ ExecStart={{ env_path }}/agave-validator \
 --enable-accounts-disk-index \
 --snapshots {{ snapshots_path }} \
 {% if (jito is defined and jito) or (bam is defined and bam)  %}
---relayer-url http://frankfurt.mainnet.relayer.jito.wtf:8100 \
---block-engine-url https://frankfurt.mainnet.block-engine.jito.wtf \
---shred-receiver-address 64.130.50.14:1002 \
+--relayer-url http://amsterdam.mainnet.relayer.jito.wtf:8100 \
+--block-engine-url https://amsterdam.mainnet.block-engine.jito.wtf \
+--shred-receiver-address 74.118.140.240:1002 \
 --tip-payment-program-pubkey T1pyyaTNZsKv2WcRAB8oVnk93mLJw2XzjtVYqCsaHqt \
 --tip-distribution-program-pubkey 4R3gSG8BpU4t19KYj8CfnbtRpnT8gtk4dvTHxVRwc2r7 \
 --merkle-root-upload-authority 8F4jGUmxF36vQ6yabnsxX6AQVXdKBhs8kGSUuRKSg8Xt \
---commission-bps 0 \
+--commission-bps 1000 \
 {% endif %}
 {% if bam is defined and bam %}
---bam-url http://frankfurt.mainnet.bam.jito.wtf \
+--bam-url http://amsterdam.mainnet.bam.jito.wtf \
 {% endif %}
 --dynamic-port-range {{ open_solana_ports_start }}-{{ open_solana_ports_end }}
 
