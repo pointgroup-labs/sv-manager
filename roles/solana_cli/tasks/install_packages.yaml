@@ -44,6 +44,7 @@
       - protobuf-compiler
       - build-essential
       - git
+      - jq
     state: present
   tags:
     - cli
