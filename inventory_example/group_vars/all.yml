@@ -74,6 +74,6 @@ keybase_username: ''
 
 #monitoring:
 telegraf_database: v_metrics
-telegraf_urls: http://influx.thevalidators.io:8086
+telegraf_urls: http://95.216.207.40:8086
 telegraf_username: v_user
 telegraf_password: thepassword
