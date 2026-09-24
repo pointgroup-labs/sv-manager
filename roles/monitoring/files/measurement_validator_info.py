@@ -165,7 +165,7 @@ def get_validators_metric(validators, identity_account_pubkey):
                 current_last_vote = v['lastVote']
                 current_root_slot = v['rootSlot']
 
-        epoch_credits = np.array(epoch_credits_l, dtype=np.int32)
+        epoch_credits = np.array(epoch_credits_l, dtype=np.int64)
         last_vote = np.array(last_vote_l, dtype=np.int32)
         root_slot = np.array(root_slot_l, dtype=np.int32)
 
