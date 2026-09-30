@@ -23,7 +23,7 @@ ExecStart={{ env_path }}/agave-validator \
 --full-rpc-api \
 --only-known-rpc \
 --expected-genesis-hash {{ expected_genesis_hash }} \
-#--incremental-snapshot-interval-slots {{ incremental_snapshot_interval_slots }} \
+--incremental-snapshot-interval-slots {{ incremental_snapshot_interval_slots }} \
 --use-snapshot-archives-at-startup when-newest \
 --block-verification-method unified-scheduler \
 {% if not extra_params is none %}
@@ -56,16 +56,15 @@ ExecStart={{ env_path }}/agave-validator \
 --enable-accounts-disk-index \
 --snapshots {{ snapshots_path }} \
 {% if (jito is defined and jito) or (bam is defined and bam)  %}
---relayer-url http://amsterdam.mainnet.relayer.jito.wtf:8100 \
---block-engine-url https://amsterdam.mainnet.block-engine.jito.wtf \
---shred-receiver-address 74.118.140.240:1002 \
+--block-engine-url https://frankfurt.mainnet.block-engine.jito.wtf \
+--shred-receiver-address 64.130.50.14:1002 \
 --tip-payment-program-pubkey T1pyyaTNZsKv2WcRAB8oVnk93mLJw2XzjtVYqCsaHqt \
 --tip-distribution-program-pubkey 4R3gSG8BpU4t19KYj8CfnbtRpnT8gtk4dvTHxVRwc2r7 \
 --merkle-root-upload-authority 8F4jGUmxF36vQ6yabnsxX6AQVXdKBhs8kGSUuRKSg8Xt \
 --commission-bps 1000 \
 {% endif %}
 {% if bam is defined and bam %}
---bam-url http://amsterdam.mainnet.bam.jito.wtf \
+--bam-url http://fra.mainnet.bam.jito.wtf \
 {% endif %}
 --dynamic-port-range {{ open_solana_ports_start }}-{{ open_solana_ports_end }}
 
